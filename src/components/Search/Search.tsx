@@ -8,7 +8,6 @@ import { SearchResults } from './SearchResults';
 const useStyles = makeStyles({
   search: {
     borderRadius: 12,
-    width: 600,
   },
 });
 
@@ -33,6 +32,7 @@ const Search = () => {
   return (
     <Box ref={containerRef}>
       <TextField
+        fullWidth
         inputProps={{ ref: searchInputRef }}
         className={styles.search}
         variant="standard"
@@ -41,7 +41,9 @@ const Search = () => {
         onChange={handleSearchChange}
         onFocus={handleSearchModeActivate}
       />
-      {isSearchMode && search && <SearchResults />}
+      {isSearchMode && search && (
+        <SearchResults onSearchModeDeactivate={handleSearchModeDeactivate} />
+      )}
     </Box>
   );
 };

@@ -6,9 +6,15 @@ import { useFetchCities } from '../../effects';
 import { LoadingIndicator } from '../LoadingIndicator';
 
 const useStyles = makeStyles({
+  root: {
+    position: 'absolute !important' as any,
+    width: '100%',
+    left: 0,
+    top: 40,
+    zIndex: 11,
+  },
   list: {
     borderRadius: 8,
-    top: 8,
     backgroundColor: '#e7e7e7',
   },
   listItem: {
@@ -23,20 +29,35 @@ const useStyles = makeStyles({
   },
 });
 
-const SearchResults = () => {
-  const { search } = useWeatherAppContext();
-  const styles = useStyles();
+interface IProps {
+  onSearchModeDeactivate: () => void;
+}
+
+const SearchResults = ({ onSearchModeDeactivate }: IProps) => {
+  const { search, handleCityChange } = useWeatherAppContext();
   const { cities, isLoading } = useFetchCities(search);
+  const styles = useStyles();
 
   const isEmptyState = !isLoading && search && isEmpty(cities);
 
+  const handleListItemClick = (city: string) => {
+    handleCityChange(city);
+    onSearchModeDeactivate();
+  };
+
   return (
-    <List className={styles.list}>
+    <List classes={{ root: styles.root }} className={styles.list}>
       {isLoading && <LoadingIndicator />}
       {isEmptyState && <Box className={styles.emptyState}>No Results</Box>}
       {!isLoading &&
         cities.map((city: string) => (
-          <ListItem className={styles.listItem}>{city}</ListItem>
+          <ListItem
+            key={city}
+            className={styles.listItem}
+            onClick={() => handleListItemClick(city)}
+          >
+            {city}
+          </ListItem>
         ))}
     </List>
   );
