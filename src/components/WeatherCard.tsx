@@ -1,4 +1,4 @@
-import { Card, Typography } from '@mui/material';
+import { Box, Card, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { isEmpty } from 'lodash';
 
@@ -11,12 +11,21 @@ import { LoadingIndicator } from './LoadingIndicator';
 
 const useStyles = makeStyles({
   weatherCard: {
-    paddingTop: 16,
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
     width: 300,
     minHeight: 200,
+    padding: 16,
+  },
+  row: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    width: '100%',
+    padding: '0 16px',
+  },
+  value: {
+    minWidth: 100,
   },
   title: {
     padding: '16px 0px',
@@ -50,18 +59,31 @@ const WeatherCard = () => {
             size={reactAnimatedWeatherProps.size}
             animate={reactAnimatedWeatherProps.animate}
           />
-
-          <Typography className={styles.title}>City: {city}</Typography>
-          <Typography>
-            {weatherData?.weather[0].description}
-            <br />
-            {`Temperature: ${weatherData?.main.temp}°C`}
-            <br />
-            {`Humidity: ${weatherData?.main.humidity}%`}
-            <br />
-            {`Wind: ${weatherData?.wind.speed}m/s`}
-            <br />
-          </Typography>
+          <Typography className={styles.title}>{city}</Typography>
+          <Box className={styles.row}>
+            <Box>Summary:</Box>
+            <Typography className={styles.value}>
+              {weatherData?.weather[0].description}
+            </Typography>
+          </Box>
+          <Box className={styles.row}>
+            <Box>Temperature:</Box>
+            <Typography className={styles.value}>
+              {weatherData?.main.temp}°C`
+            </Typography>
+          </Box>
+          <Box className={styles.row}>
+            <Box>Humidity:</Box>
+            <Typography className={styles.value}>
+              {weatherData?.main.humidity}%
+            </Typography>
+          </Box>
+          <Box className={styles.row}>
+            <Box>Wind:</Box>
+            <Typography className={styles.value}>
+              {weatherData?.wind.speed}m/s
+            </Typography>
+          </Box>
         </>
       )}
     </Card>
