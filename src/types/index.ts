@@ -1,2 +1,3 @@
 export * from './WeatherAppContext';
-export * from './Cities';
+export * from './City';
+export * from './Weather';
