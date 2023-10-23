@@ -1,6 +1,4 @@
-import React from 'react';
-import { ChangeEvent } from 'react';
-import { useState } from 'react';
+import { useState, ChangeEvent } from 'react';
 import { WeatherAppContext } from './context';
 import { useWeatherData } from './effects';
 import { Main } from './pages';

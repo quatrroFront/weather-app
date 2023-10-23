@@ -10,11 +10,13 @@ const useStyles = makeStyles({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 24,
-    backgroundColor: '#f2f4f4',
     height: '100vh',
   },
   topBar: {
     position: 'relative',
+  },
+  subTitle: {
+    padding: '48px 0 16px',
   },
 });
 
@@ -30,7 +32,9 @@ const Main = () => {
       <RecentSearches />
       {city && (
         <>
-          <Typography>Current Forecast for {city}</Typography>
+          <Typography className={styles.subTitle}>
+            Current Forecast for {city}
+          </Typography>
           <WeatherCard />
         </>
       )}

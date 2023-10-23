@@ -15,7 +15,7 @@ const useStyles = makeStyles({
   },
   list: {
     borderRadius: 8,
-    backgroundColor: '#e7e7e7',
+    border: '1px solid #e7e7e7',
   },
   listItem: {
     cursor: 'pointer',
