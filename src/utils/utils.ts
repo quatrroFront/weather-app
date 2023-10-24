@@ -1,6 +1,6 @@
 import moment from 'moment';
-import { WEATHER_ICON, WEATHER_TYPE } from './constants';
-import { ICity } from './types';
+import { WEATHER_ICON, WEATHER_TYPE } from '../constants';
+import { ICity } from '../types';
 
 const getFormattedCities = (cities: ICity[]) => {
   return cities.reduce((acc: string[], { city }) => {
